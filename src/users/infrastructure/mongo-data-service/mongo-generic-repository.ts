@@ -13,13 +13,13 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     async getAll(): Promise<T[]> {
         return this._repository.find().populate(this._populateOnFind).exec();
     }
-    async get(id: any): Promise<any> {
+    async getById(id: number): Promise<any> {
         return this._repository.findById(id).populate(this._populateOnFind).exec();
     }
     async create(item: T): Promise<T> {
         return this._repository.create(item);
     }
-    async update(id: string, item: T) {
+    async update(id: string, item: T): Promise<T> {
         return this._repository.findByIdAndUpdate(id, item);
     }
 }

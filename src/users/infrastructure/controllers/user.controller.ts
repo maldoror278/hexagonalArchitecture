@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, Post } from '@nestjs/common';
-//import { CreateUserDto } from '../dtos/save-users.dto';
+import{ User } from '../../domain/entities/user.enity'
 import { AddUserUseCase } from '../../aplication/useCase/add-user-use-case';
 
 @Controller({ path: 'users' })
@@ -27,7 +27,7 @@ export class UserController {
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async createUser(@Body() userDto) {
+    async createUser(@Body() userDto: User) {
         this.addUserUseCase.createUser(userDto);
     }
 }
