@@ -1,33 +1,15 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, Post } from '@nestjs/common';
-import{ User } from '../../domain/entities/user.enity'
 import { AddUserUseCase } from '../../aplication/useCase/add-user-use-case';
+import { CreateUserDto } from '../dtos/save-users.dto';
 
 @Controller({ path: 'users' })
 export class UserController {
     @Inject(AddUserUseCase)
     private readonly addUserUseCase: AddUserUseCase;
 
-    @Get()
-    @HttpCode(HttpStatus.OK)
-    async find() {
-        const response = {
-            status: ' success general',
-        };
-        return response;
-    }
-
-    @Get(':id')
-    @HttpCode(HttpStatus.OK)
-    async findOne(@Param('id') id: string) {
-        const response = {
-            status: ` success findOne ${id}}`,
-        };
-        return response;
-    }
-
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    async createUser(@Body() userDto: User) {
-        this.addUserUseCase.createUser(userDto);
+    async createUser(@Body() createUserDto: CreateUserDto) {
+        return await this.addUserUseCase.createUser(createUserDto);
     }
 }
