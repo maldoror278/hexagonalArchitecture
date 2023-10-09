@@ -19,7 +19,7 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     async create(item: T): Promise<T> {
         return this._repository.create(item);
     }
-    async update(id: string, item: T): Promise<T> {
+    async update(id: string, item: any): Promise<any> {
         return this._repository.findByIdAndUpdate(id, item);
     }
 }

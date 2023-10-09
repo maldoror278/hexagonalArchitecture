@@ -5,8 +5,7 @@ import { CreateUserDto } from 'src/users/infrastructure/dtos/save-users.dto';
 
 @Injectable()
 export class AddUserUseCase {
-    @Inject(IDataService)
-    private readonly dataService: IDataService;
+    constructor(@Inject(IDataService) private readonly dataService: IDataService) {}
 
     async createUser(createUserDto: CreateUserDto): Promise<User> {
         return await this.dataService.users.create(createUserDto);

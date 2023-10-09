@@ -4,8 +4,7 @@ import { CreateUserDto } from '../dtos/save-users.dto';
 
 @Controller({ path: 'users' })
 export class UserController {
-    @Inject(AddUserUseCase)
-    private readonly addUserUseCase: AddUserUseCase;
+    constructor(@Inject(AddUserUseCase) private readonly addUserUseCase: AddUserUseCase) {}
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
